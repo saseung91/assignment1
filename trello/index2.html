@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style2.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -25,19 +25,17 @@
         alt="" loading="lazy">
     </a>
   </nav>
-  <div class="flex-container">      
-    <div class="items" id="items">
+  <div class="input-group mb-3 col-create">
+    <input type="text" id="newColumn" class="form-control" placeholder="Give a name for your column" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-primary" type="button" id="add-column">Create a column</button>
     </div>
-    <div class="input-group mb-3">
-      <input type="text" id="newColumn" class="form-control" placeholder="Give a name for your column" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <div class="input-group-append">
-        <button class="btn btn-primary" type="button" id="add-column">Create a column</button>
-      </div>
-    </div>
+  </div>
+  <div class="flex-container" id="flex-container">      
 </div>
 
 
-  <script src="trello.js"></script>
+  <script src="trello2.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
