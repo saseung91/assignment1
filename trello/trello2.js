@@ -15,7 +15,7 @@ function addItemtoDom(event) {
     const uniqueId = Date.now();
     console.log("value of input", inputValue);
     $(`.jumbotron[data-col=${colnumber}] .items`).append(
-        `<div class="row item" data-id=${uniqueId}>
+        `<div class="row item" draggable="true" data-id=${uniqueId}>
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -41,6 +41,7 @@ function addItemtoDom(event) {
         })
         console.log("filteredItems", filteredItems);
         listItems = filteredItems;
+
     })
 
     newItem.title = inputValue;
@@ -74,7 +75,7 @@ lists.forEach(function (list, index) {
             </div>`
     })
     $("#flex-container").append(
-        `<div class="jumbotron" data-col=${index}>
+        `<div class="jumbotron droppable" data-col=${index}>
             <h4>${list.title}<button type="button" data-column=${index} class="btn btn-danger col-remove btn btn-primary btn-sm">x</button></h5>
             </h4>
             <div class="items">${itemDom}</div>
@@ -85,7 +86,13 @@ lists.forEach(function (list, index) {
         </div>
       </div>
       </div>`
-    )
+    ) 
+    $('.droppable').droppable({
+        drop: (event, ui) => {
+        console.log(event);
+        console.log(ui);
+         }
+        })   
 }
 )
 
@@ -100,9 +107,9 @@ $("#add-column").on("click", function (e) {
     const lastIndex = lists.length - 1;
     console.log(lists)
     $("#flex-container").append(
-        `<div class="jumbotron" data-col=${lastIndex}>
+        `<div class="jumbotron droppable" data-col=${lastIndex}>
             <h4>${inputValue} <button type="button" data-column=${lastIndex} class="btn btn-danger col-remove btn btn-primary btn-sm">x</button></h5></h4>
-            <div class="items"></div>
+            <div class="items" draggable="true"></div>
             <div class="input-group mb-3">
                 <input type="text" id="addCard${lastIndex}" class="form-control" placeholder="Add another card" aria-label="Recipient's username" aria-describedby="button-addon2">
             <div class="input-group-append">
@@ -113,7 +120,9 @@ $("#add-column").on("click", function (e) {
     )
     $(".add-item").on("click", function (event) {
         addItemtoDom(event);
+
     })
+
     $(".col-remove").on("click", function (event) {
         console.log("button clicked");
         const uniqueId = parseInt(event.currentTarget.dataset.column);
@@ -122,7 +131,44 @@ $("#add-column").on("click", function (e) {
         
         // event.preventDefault();
     })
-
-
-
+    $('.droppable').droppable({
+        drop: (event, ui) => {
+        console.log(event);
+        console.log(ui);
+         }
+        })
 })
+
+
+function init(){
+    $('.droppable').droppable ({
+        drop: handleDropEvent
+    })
+};
+
+function handleDropEvent(event, ui) {
+    let draggable = ui.draggable;
+    alert('yo');
+};
+// $('.droppable').droppable({
+//     drop: (event, ui) => {
+//     console.log(event);
+//     console.log(ui);
+//      }
+//     })
+//     console.log('column target', event.target.dataset.id);
+//     //get the data of the dragged item
+//     let dragItemContent = $(ui.draggable[0].dataset);
+//     console.log(dragItemContent);
+//     // Since HTMLElement.dataset returns a DOM string map, 
+//     // the only way I found is to convert it into an native object by using below code
+//     // dragItemContent = JSON.parse(JSON.stringify(dragItemContent));
+//     //get index number of dragged item
+//     // const indexNum = dragItemContent[0].index;
+//     // tableEntry[indexNum].status = parseInt(event.target.dataset.column);
+//     // console.log('parseint', parseInt(event.target.dataset.column));
+//     // console.log(tableEntry);
+//     // //Prepend dragged item in to the droppable list
+//     // $(`#list${event.target.dataset.column}`).prepend(ui.draggable);
+//     }
+// });
